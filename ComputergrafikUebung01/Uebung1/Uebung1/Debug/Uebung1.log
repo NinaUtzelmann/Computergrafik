@@ -1,0 +1,9 @@
+﻿  stdafx.cpp
+  AssemblyInfo.cpp
+AssemblyInfo.cpp(40): warning C4947: 'System::Security::Permissions::SecurityAction::RequestMinimum': marked as obsolete
+  AssemblyInfo.cpp(40): note: Message: 'Assembly level declarative security is obsolete and is no longer enforced by the CLR by default. See http://go.microsoft.com/fwlink/?LinkID=155570 for more information.'
+  Uebung1.cpp
+  Generating Code...
+  .NETFramework,Version=v4.0.AssemblyAttributes.cpp
+  Uebung1.vcxproj -> C:\Users\Nina\Documents\HTWG Konstanz\6Sem\Computergrafik\ComputergrafikUebung01\Uebung1\Debug\Uebung1.exe
+  Uebung1.vcxproj -> C:\Users\Nina\Documents\HTWG Konstanz\6Sem\Computergrafik\ComputergrafikUebung01\Uebung1\Debug\Uebung1.pdb (Full PDB)
