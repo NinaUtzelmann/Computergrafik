@@ -3,7 +3,7 @@
 
 #include "vec.h"
 #include "mat.h"
-
+#include "math.h"
 // might be you have to swith to
 // #include "glut.h" depending on your GLUT installation
 #include "Uebung2/Uebung2/glut.h"
@@ -35,6 +35,18 @@ CVec2i g_vecPos;		// same as above but in vector form ...
 CVec2i g_vecPosIncr;	// (used in display2)
 //
 /////////////////////////////////////////////////////////////
+
+
+float sunPos[2] = {0, 0};
+CVec2f sunVec(sunPos);
+
+float earthPos[2] = {120, 0};
+CVec2f earthVec(earthPos);
+float earthAngle = 0.001;
+
+float moonPos[2] = {170, 0};
+CVec2f moonVec(moonPos);
+float moonAngle = 0.01;
 
 // Eine überaus primitive Punktklasse
 class Point {
@@ -126,48 +138,45 @@ void timer (int value)
 	glutTimerFunc (g_iTimerMSecs, timer, 0);	// call timer for next iteration
 }
 
+CVec2f rotate(float angle, CVec2f vector)
+{
+	float matData[2][2] = {{ cos(angle), -sin(angle) },{ sin(angle), cos(angle) }};
+	CMat2f newMat(matData);
+	return newMat* vector;
+}
+
 // display callback function
 void display1 (void) 
 {
-
 	glClear (GL_COLOR_BUFFER_BIT);
 
 	///////
 	// display your data here ...
 	//
 
-	/*glBegin (GL_TRIANGLES);
-		glColor3f (1,0,0);
-		glVertex2i (g_iPos, 0);
-		glColor3f (0,1,0);
-		glVertex2i (-g_iPos, g_iPos);
-		glColor3f (0,0,1);
-		glVertex2i (-g_iPos, -g_iPos);
-	glEnd ();*/
+	earthVec = rotate(earthAngle, earthVec);
+	moonVec -= earthVec;
+	
+	moonVec = rotate(moonAngle, moonVec);
+	moonVec += earthVec;
 
-
-	/*Point p1(0, 0);
-	Point p2(50, 50);
-	Color cl(1, 0, 0);
-	bhamLine(p1, p2, cl);
-	*/
 	int rSun = 50;
-	for (int i = 0; i < rSun; i++) {
-		Point sun(0, 0);		
+	Point sun(sunVec(0), sunVec(1));
+	for (int i = 0; i < rSun; i++) {		
 		Color ccSun(255, 255, 0);
 		bhamCircle(sun, i, ccSun);
 	}
 
 	int rEarth = 30;
+	Point earth(earthVec(0), earthVec(1));
 	for (int i = 0; i < rEarth; i++) {
-		Point earth(120, 0);
 		Color ccEarth(0, 0, 139);
 		bhamCircle(earth, i, ccEarth);
 	}
 
 	int rMoon = 12;
+	Point moon(moonVec(0), moonVec(1));
 	for (int i = 0; i < rMoon; i++) {
-		Point moon(170, 0);
 		Color ccMoon(205, 179, 138);
 		bhamCircle(moon, i, ccMoon);
 	}
