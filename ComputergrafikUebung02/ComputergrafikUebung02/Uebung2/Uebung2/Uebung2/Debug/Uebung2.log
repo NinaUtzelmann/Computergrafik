@@ -1,4 +1,5 @@
 ﻿  main.cpp
-..\..\main.cpp(143): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+..\..\main.cpp(155): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+..\..\main.cpp(208): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
   Uebung2.vcxproj -> C:\Users\Nina\Documents\HTWG Konstanz\6Sem\Computergrafik\ComputergrafikUebung02\ComputergrafikUebung02\Uebung2\Uebung2\Debug\Uebung2.exe
   Uebung2.vcxproj -> C:\Users\Nina\Documents\HTWG Konstanz\6Sem\Computergrafik\ComputergrafikUebung02\ComputergrafikUebung02\Uebung2\Uebung2\Debug\Uebung2.pdb (Full PDB)

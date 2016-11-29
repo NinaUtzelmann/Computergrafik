@@ -42,11 +42,23 @@ CVec2f sunVec(sunPos);
 
 float earthPos[2] = {120, 0};
 CVec2f earthVec(earthPos);
-float earthAngle = 0.001;
+float earthAngle = 0.01;
 
 float moonPos[2] = {170, 0};
 CVec2f moonVec(moonPos);
 float moonAngle = 0.01;
+//------------------------------ Aufgabe3----------------------
+float sunPos2[2] = { 0, 0 };
+CVec3f sunVec2(sunPos2);
+
+float earthPos2[2] = { 120, 0 };
+CVec3f earthVec2(earthPos2);
+float earthAngle2 = 0.001;
+
+float moonPos2[2] = { 170, 0 };
+CVec3f moonVec2(moonPos2);
+float moonAngle2 = 0.01;
+
 
 // Eine überaus primitive Punktklasse
 class Point {
@@ -153,9 +165,9 @@ void display1 (void)
 	///////
 	// display your data here ...
 	//
-
-	earthVec = rotate(earthAngle, earthVec);
 	moonVec -= earthVec;
+	earthVec = rotate(earthAngle, earthVec);
+	
 	
 	moonVec = rotate(moonAngle, moonVec);
 	moonVec += earthVec;
@@ -190,6 +202,17 @@ void display1 (void)
 }
 
 // display callback function
+
+CVec3f rotate2(float angle, CVec3f vector)
+{
+	float matData[3][3] = { { cos(angle), -sin(angle), 0 },{ sin(angle), cos(angle), 0 }, {0, 0, 1} };
+	CMat3f newMat(matData);
+	float transVec[3][3] = { {1, 0, vector(0)},{ 0, 1, vector(1)},{ 0, 0, vector(2) }};
+	CMat3f transMat(transVec);
+	newMat = newMat * transMat;
+	return newMat * vector;
+}
+
 void display2 (void) 
 {
 	glClear (GL_COLOR_BUFFER_BIT);
@@ -198,17 +221,33 @@ void display2 (void)
 	// display your data here ...
 	//
 
-	glBegin (GL_QUADS);
-		glColor3f (1,0,0);
-		glVertex2i (-g_vecPos(1), -g_vecPos(2));
-		glColor3f (0,1,0);
-		glVertex2i (g_vecPos(1), -g_vecPos(2));
-		glColor3f (0,0,1);
-		glVertex2i (g_vecPos(1), g_vecPos(2));
-		glColor3f (1,1,0);
-		glVertex2i (-g_vecPos(1), g_vecPos(2));
-	glEnd ();
+	moonVec2 -= earthVec2;
 
+	earthVec2 = rotate2(earthAngle2, earthVec2);
+
+	moonVec2 = rotate2(moonAngle2, moonVec2);
+	moonVec2 += earthVec2;
+
+	int rSun2 = 50;
+	Point sun2(sunVec2(0), sunVec2(1));
+	for (int i = 0; i < rSun2; i++) {
+		Color ccSun2(255, 255, 0);
+		bhamCircle(sun2, i, ccSun2);
+	}
+
+	int rEarth2 = 30;
+	Point earth2(earthVec2(0), earthVec2(1));
+	for (int i = 0; i < rEarth2; i++) {
+		Color ccEarth2(0, 0, 139);
+		bhamCircle(earth2, i, ccEarth2);
+	}
+
+	int rMoon2 = 12;
+	Point moon2(moonVec2(0), moonVec2(1));
+	for (int i = 0; i < rMoon2; i++) {
+		Color ccMoon2(205, 179, 138);
+		bhamCircle(moon2, i, ccMoon2);
+	}
 	//
 	///////
 
