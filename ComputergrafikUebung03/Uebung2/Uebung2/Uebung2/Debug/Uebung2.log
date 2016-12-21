@@ -1,0 +1,8 @@
+﻿  main.cpp
+..\..\main.cpp(2): warning C4005: '__CLR_VER': macro redefinition
+  ..\..\main.cpp(2): note: command-line arguments:  see previous definition of '__CLR_VER'
+..\..\main.cpp(2): warning C4651: '/D__CLR_VER=40601076' specified for precompiled header but not for current compile
+..\..\main.cpp(612): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'double'
+..\..\main.cpp(617): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'double'
+  Uebung2.vcxproj -> C:\Users\Nina\Documents\HTWG Konstanz\6Sem\Computergrafik\ComputergrafikUebung03\Uebung2\Uebung2\Debug\Uebung2.exe
+  Uebung2.vcxproj -> C:\Users\Nina\Documents\HTWG Konstanz\6Sem\Computergrafik\ComputergrafikUebung03\Uebung2\Uebung2\Debug\Uebung2.pdb (Full PDB)
